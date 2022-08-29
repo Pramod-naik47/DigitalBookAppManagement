@@ -1,0 +1,78 @@
+<div style="margin-top: 5%;margin-right: 2%;" align="right">
+    <a class="btn btn-primary" type="button" [routerLink] = "['/purchase-history']"> check purchase history</a>
+</div>
+<div class="container" >
+    <form (ngSubmit)="onSearchSubmit()">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="bookTitle">Book title</label>
+                <input type="text" class="form-control" name="bookTitle" id="bookTitle" placeholder="Book title"
+                    [(ngModel)]="criteria.bookTitle">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" name="author" id="author" placeholder="Author name"
+                    [(ngModel)]="criteria.userName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="category">Category</label>
+                <input type="text" class="form-control" name="category" id="category" placeholder="Category"
+                    [(ngModel)]="criteria.category">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="publisher">Publisher</label>
+                <input type="text" class="form-control" name="publisher" id="publisher" placeholder="Publisher"
+                    [(ngModel)]="criteria.publisher">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="bookPrice">Price</label>
+                <input type="number" class="form-control" name="bookPrice" id="bookPrice" placeholder="Price"
+                    [(ngModel)]="criteria.price">
+            </div>
+        </div>
+        <div class="row col-md-3 offset-9">
+            <button id="btnSearch" class="btn btn-primary btn-block">Search</button>
+        </div>
+    </form>
+
+
+    <div class="row">
+        <div class="table-responsive" id="divBook">
+            <div class="table-responsive">
+                <table class="table table-striped border" *ngIf="books.length">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th>Book Title</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Publisher</th>
+                            <th>Author</th>
+                            <th>Publish date</th>
+                            <th>Created date</th>
+                            <th>Is Active</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let book of books">
+                            <td>{{book.bookTitle}}</td>
+                            <td>{{book.category}}</td>
+                            <td>{{book.price}}</td>
+                            <td>{{book.publisher}}</td>
+                            <td>{{book.userName}}</td>
+                            <td>{{book.publishDate}}</td>
+                            <td>{{book.createdDate}}</td>
+                            <td>{{book.active}}</td>
+                            <td><a class="btn btn-info  text-white" type="button" [routerLink] = "['/purchase', book.bookId]">Purchase</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

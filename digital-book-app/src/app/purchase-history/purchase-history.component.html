@@ -1,0 +1,111 @@
+
+<div class="container border" style="margin-top: 8%">
+    <div class="row">
+        <form ngNativeValidate>
+            <div class="row mt-3">
+                <div class="form-group row">
+                    <div class="col-md-1 offset-3">
+                        <label for="userName">Email</label>
+                    </div>
+                    <div class="col-md-4">
+                         <input type="text"  id="email" name="email"  [(ngModel)]="paymentObject.email"  placeholder="Enter email" class="form-control" required/>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="form-group row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2" align="center">
+                         <button class="btn btn-primary btn-block form-control" (click)="GetPaymentHistory()" > Search  </button>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    <br/>
+    <div class="row" *ngIf="payments.length">
+        <div class="table-responsive" id="divBook">
+            <div class="table-responsive">
+                <table class="table table-striped border">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th>Book Title</th>
+                            <th>Price</th>
+                            <th>Email</th>
+                            <th>Paymemt date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = "let pay of payments">
+                            <td>{{pay.bookTitle}}</td>
+                            <td>{{pay.price}}</td>
+                            <td>{{pay.email}}</td>
+                            <td>{{pay.paymentDate}}</td>
+                            <td>
+                                <a class="btn btn-info  text-white" type="button"  (click)="OpenInvoiceModel(template, pay.bookId)">Invoice</a>
+                                <a class="btn btn-info  text-white" type="button"  (click)="GetRefund(pay.paymentId, pay.paymentDate)" style="margin-left : 4px">Refund</a>
+                                <a class="btn btn-info  text-white" type="button"  (click)="ReadBook(readBook,  pay.bookId)" style="margin-left : 4px">Read book</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #template >  
+        <div class="modal-header">  
+          <h4 class="modal-title pull-left">Invoice</h4> 
+          
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+            <span aria-hidden="true">×</span>  
+          </button>  
+        </div>  
+        <div class="modal-body" id="invoiceModel">
+            <div >
+                <div align="center">
+                    <table padding="10" id="tableClass">
+                        <tr>
+                            <td style="width: 150px"> Book title</td>
+                            <td style="width: 150px">Price</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 150px"> {{ paymentObject.bookTitle }}</td>
+                            <td style="width: 150px">{{ paymentObject.price }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">  
+          <button type="button" printSectionId="invoiceModel" ngxPrint><i class="fa-solid fa-print"></i></button>
+          <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>  
+        </div>  
+      </ng-template>  
+
+      <ng-template #readBook >  
+        <div class="modal-header">  
+          <h4 class="modal-title pull-left">{{ paymentObject.bookTitle }}</h4> 
+          
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+            <span aria-hidden="true">×</span>  
+          </button>  
+        </div>  
+        <div class="modal-body" id="invoiceModel">
+            <div >
+                <div align="center">
+                   <p>{{ paymentObject.bookTitle }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">  
+          <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>  
+        </div>  
+      </ng-template> 
+
+
+</div>

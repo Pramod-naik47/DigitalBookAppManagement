@@ -1,0 +1,46 @@
+<div class="container border" style="padding: 30px; margin-top: 8%;">
+    <form (ngSubmit)="PurchaseBook()" ngNativeValidate>
+        <div class="row mt-3">
+            <div class="form-group row">
+                <div class="col-md-1 offset-3">
+                    <label for="selectedBook">Selected book</label>
+                </div>
+                <div class="col-md-4">
+                     <input disabled type="text" [(ngModel)]="bookObject.bookTitle" id="selectedBook" name="selectedBook"  class="form-control"/>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="form-group row">
+                <div class="col-md-1 offset-3">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-md-4">
+                     <input type="text" [(ngModel)]="paymentObject.email" id="email" name="email"  class="form-control" required/>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="form-group row">
+                <div class="col-md-1 offset-3">
+                    <label for="password">Amount to be paid</label>
+                </div>
+                <div class="col-md-4">
+                    <input disabled type="number" id="price" name="price" [(ngModel)]="bookObject.price"  class="form-control" required/>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="form-group row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2" align="center">
+                     <button class="btn btn-primary btn-block form-control"> Purchase </button>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+        </div>
+    </form>
+</div>
